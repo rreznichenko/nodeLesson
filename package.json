@@ -18,5 +18,27 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "pug": "^2.0.3"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "no-console": "off",
+      "prefer-destructuring": "off",
+      "consistent-return": "off",
+      "no-undef": "off",
+      "no-shadow": "off",
+      "no-restricted-syntax": "off",
+      "no-loop-func": "off"
+    }
   }
 }

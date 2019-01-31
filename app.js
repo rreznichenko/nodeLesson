@@ -1,8 +1,9 @@
-const rootDir = require('./util/path');   
 const path = require('path')
 const express = require('express');
 const bodyParser = require('body-parser')
+const rootDir = require('./util/path');   
 const page404Controller = require('./controllers/404')
+
 const app = express();
 
 
