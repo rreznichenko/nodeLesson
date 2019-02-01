@@ -11,6 +11,7 @@ router.get('/cart',  shopContorller.getCart)
 router.post('/cart',  shopContorller.postCart)
 router.get('/checkout',  shopContorller.getCheckout)
 router.get('/orders',  shopContorller.getOrders)
+router.post('/cart-delete-item', shopContorller.postCartDeleteProduct)
 
 
 module.exports = router
