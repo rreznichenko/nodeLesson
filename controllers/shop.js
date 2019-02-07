@@ -34,28 +34,36 @@ exports.getIndex = (req, res) => {
 }
 
 exports.getCart = (req, res) => {
-    Cart.getCart(cart => {
-        Product.fetchAll(products => {
-            const cartProducts = []
-            for (product of products) {
-                const cartProductData = cart.products.find(prod => prod.id === product.id)
-                if (cartProductData) {
-                    console.log(cartProductData)
-                    cartProducts.push({ productData: product, qty: cartProductData.qty });
-                }
-            }
-            res.render('shop/cart', { pageTitle: 'Your cart', path: '/cart', products: cartProducts });
+    req.user.getCart()
+    .then(cart => {
+        return cart.getProducts()
+        .then(products => {
+            res.render('shop/cart', { pageTitle: 'Your cart', path: '/cart', products });
         })
+        .catch(err => {
+            console.log(err)
+        });
     })
+    .catch(err => {
+        console.log(err)
+    });
 }
 
 exports.postCart = (req, res) => {
     const prodId = req.body.productId;
-    Product.findById(prodId, (product) => {
-        if (product) {
-            Cart.addProduct(prodId, product.price);
-        }
-    });
+    req.user.getCart()
+    .then( cart => {
+        return cart.getProducts({where:{id: prodId}})
+        .then(products => {
+            
+        })
+        .catch(err => {
+            console.log(err)
+        });
+    })
+    .catch(err => {
+        console.log(err)
+    })
     res.redirect('/');
 }
 
